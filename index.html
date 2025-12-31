@@ -2,10 +2,300 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Name</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Frontend Developer & Analytics</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #22c55e;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --muted: #64748b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #f8fafc, #eef2ff);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ---------- Layout ---------- */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero {
+      max-width: 800px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1 span {
+      color: var(--primary);
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .cta {
+      display: inline-flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 25px rgba(99,102,241,0.3);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--dark);
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, I’m Your Name 👋</h1>
-  <p>Frontend Developer | UI/UX | Analytics</p>
+
+  <!-- HERO -->
+  <header>
+    <div class="hero">
+      <h1>Hi, I’m <span>Your Name</span></h1>
+      <p class="subtitle">Frontend Developer • UI/UX • Analytics & Marketing</p>
+      <div class="cta">
+        <button class="btn btn-primary" onclick="scrollToSection('skills')">My Skills</button>
+        <button class="btn btn-secondary" onclick="scrollToSection('contact')">Contact</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title">What I Work With</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>UI / UX</h3>
+        <p>Figma, Design Systems, Wireframes, Prototyping</p>
+      </div>
+      <div class="card">
+        <h3>Frontend</h3>
+        <p>React, Vite, JavaScript, Performance-focused UI</p>
+      </div>
+      <div class="card">
+        <h3>Analytics</h3>
+        <p>Mixpanel, Google Analytics, Event Tracking</p>
+      </div>
+      <div class="card">
+        <h3>Marketing</h3>
+        <p>SEO, Campaign Tracking, WordPress</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Survey Analytics Platform</h3>
+        <p><strong>Problem:</strong> Low survey completion & unclear drop-offs.</p>
+        <p><strong>Solution:</strong> UX redesign + Mixpanel funnel tracking.</p>
+        <p><strong>Impact:</strong> ↑ 28% completion, ↓ 40% drop-offs.</p>
+        <p><em>Tech:</em> React, MUI, Mixpanel</p>
+      </div>
+      <div class="card">
+        <h3>Interactive Survey System</h3>
+        <p><strong>Problem:</strong> Static forms reduced engagement.</p>
+        <p><strong>Solution:</strong> Chat-style survey with progress tracking.</p>
+        <p><strong>Impact:</strong> ↑ user engagement, ↑ response quality.</p>
+        <p><em>Tech:</em> React, Vite, Analytics</p>
+      </div>
+      <div class="card">
+        <h3>SEO & Marketing Dashboard</h3>
+        <p><strong>Problem:</strong> No clear view of campaign performance.</p>
+        <p><strong>Solution:</strong> Centralized dashboard with GA & SEO data.</p>
+        <p><strong>Impact:</strong> Improved content & campaign decisions.</p>
+        <p><em>Tech:</em> GA, SEO tools, WordPress</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <h2 class="section-title">Achievements</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>32%</h3>
+        <p>Increase in onboarding conversion using Mixpanel funnels</p>
+      </div>
+      <div class="card">
+        <h3>45%</h3>
+        <p>Performance improvement after frontend optimization</p>
+      </div>
+      <div class="card">
+        <h3>5+</h3>
+        <p>Products supported with reusable UI systems</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Let’s Connect</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Email</h3>
+        <p>youremail@example.com</p>
+      </div>
+      <div class="card">
+        <h3>GitHub</h3>
+        <p>github.com/yourusername</p>
+      </div>
+      <div class="card">
+        <h3>LinkedIn</h3>
+        <p>linkedin.com/in/yourprofile</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Your Name — Built with GitHub Pages
+  </footer>
+
+  <script>
+    // Smooth scroll
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reveal cards on scroll
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    cards.forEach(card => observer.observe(card));
+  </script>
 </body>
 </html>

@@ -1,301 +1,502 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sujan Adhikari | Frontend Developer & Analytics</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sujan Adhikari — Frontend Developer · Analytics · Technical Writer</title>
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <meta name="description" content="Sujan Adhikari — Frontend developer (React/Vite), analytics (Mixpanel/GA), UX & technical writing. Explore projects, articles, certifications and contact info." />
+  <meta name="author" content="Sujan Adhikari" />
+
   <style>
-    :root {
-      --primary: #6366f1;
-      --secondary: #22c55e;
-      --dark: #0f172a;
-      --light: #f8fafc;
-      --muted: #64748b;
+    :root{
+      --bg1:#f8fafc;
+      --bg2:#eef2ff;
+      --primary:#6366f1;
+      --accent:#06b6d4;
+      --muted:#64748b;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      --shadow: 0 12px 30px rgba(2,6,23,0.06);
+      --maxw:1200px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+
+    html,body{height:100%;}
+    body{
+      background: linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      line-height:1.45;
+      padding-bottom:64px;
     }
 
-    body {
-      background: linear-gradient(180deg, #f8fafc, #eef2ff);
-      color: var(--dark);
-      overflow-x: hidden;
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px;}
+
+    /* Header / Hero */
+    header.hero{
+      display:flex;gap:28px;align-items:center;justify-content:space-between;
+      padding:40px 0;
+    }
+    .hero-left{flex:1;min-width:260px;}
+    .hero-right{
+      width:220px;height:220px;border-radius:16px;flex-shrink:0;
+      background:linear-gradient(135deg,var(--card), #f1f5f9);
+      box-shadow: var(--shadow);display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+    }
+    .avatar{width:100%;height:100%;object-fit:cover;display:block;}
+
+    h1{font-size:clamp(26px,4.4vw,40px);line-height:1.03;margin-bottom:8px;}
+    h1 .name{color:var(--primary);display:inline-block;}
+    .eyebrow{display:inline-block;padding:6px 12px;background:rgba(99,102,241,0.09);color:var(--primary);border-radius:999px;font-weight:600;margin-bottom:14px;}
+    p.lead{color:var(--muted);margin-bottom:18px;font-size:1rem;}
+
+    .metrics{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0;}
+    .pill{background:var(--card);padding:8px 12px;border-radius:999px;box-shadow:var(--shadow);font-weight:600;font-size:0.95rem;color:#0f172a;}
+
+    .cta-row{display:flex;gap:12px;margin-top:14px;}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;border:0;font-weight:600;cursor:pointer;text-decoration:none;
+      box-shadow:0 8px 22px rgba(99,102,241,0.14);
+    }
+    .btn-primary{background:var(--primary);color:#fff;}
+    .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--muted);}
+
+    /* Layout sections */
+    section{margin:36px 0;padding:22px 0;}
+    .section-title{font-size:20px;font-weight:700;margin-bottom:18px;color:#0f172a;}
+    .subtle{color:var(--muted);font-size:0.95rem;margin-bottom:8px;}
+
+    /* Grid */
+    .grid{display:grid;gap:16px;}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+    .grid.cols-4{grid-template-columns:repeat(4,1fr);}
+    .grid.responsive{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+
+    /* Cards */
+    .card{
+      background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+      transition:transform .28s ease,box-shadow .28s ease;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,23,0.08);}
+
+    .card h3{font-size:1.05rem;margin-bottom:6px;}
+    .card p{color:var(--muted);font-size:0.95rem;margin-bottom:8px;}
+
+    /* Tags / skills */
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+    .tag{background:rgba(99,102,241,0.08);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.85rem;}
+
+    /* Projects list */
+    .project-links a{display:block;color:var(--primary);text-decoration:none;font-weight:600;margin-top:6px;}
+    .project-links a:hover{text-decoration:underline;}
+
+    /* Articles list */
+    .articles .meta{font-size:0.9rem;color:var(--muted);margin-top:6px;}
+
+    /* Certifications grid */
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+    .cert a{display:block;text-decoration:none;color:inherit;}
+
+    /* Events gallery */
+    .events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+    .event-img{width:100%;height:150px;object-fit:cover;border-radius:10px;display:block;}
+
+    /* Contact row */
+    .contact-cards{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+    .contact-card{flex:1;min-width:200px;padding:14px;border-radius:12px;background:linear-gradient(180deg,var(--glass),#fff);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;}
+    .contact-card a{color:var(--primary);font-weight:700;text-decoration:none;}
+
+    footer{margin-top:28px;padding:18px 0;text-align:center;color:var(--muted);font-size:0.9rem;}
+
+    /* Responsive */
+    @media (max-width:900px){
+      header.hero{flex-direction:column;align-items:flex-start;}
+      .hero-right{width:160px;height:160px;border-radius:12px;}
     }
 
-    /* ---------- Layout ---------- */
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .hero {
-      max-width: 800px;
-      animation: fadeUp 1s ease forwards;
-    }
-
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    h1 span {
-      color: var(--primary);
-    }
-
-    .subtitle {
-      font-size: 1.25rem;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-
-    .cta {
-      display: inline-flex;
-      gap: 1rem;
-    }
-
-    .btn {
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      border: none;
-      font-weight: 500;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 10px 25px rgba(99,102,241,0.3);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: var(--dark);
-      border: 1px solid #e5e7eb;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    }
-
-    /* ---------- Sections ---------- */
-    section {
-      padding: 4rem 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    .card h3 {
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    /* ---------- Footer ---------- */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    /* ---------- Animations ---------- */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-    }
+    /* small utilities */
+    .muted{color:var(--muted);}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,#eee,transparent);margin:18px 0;border-radius:4px;}
+    .small{font-size:0.9rem;color:var(--muted);}
+    .icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
   </style>
 </head>
 <body>
+  <div class="container">
 
-  <!-- HERO -->
-  <header>
-    <div class="hero">
-      <h1>Hi, I’m <span>Sujan Adhikari</span></h1>
-      <p class="subtitle">Frontend Developer • UI/UX • Analytics & Marketing</p>
-      <div class="cta">
-        <button class="btn btn-primary" onclick="scrollToSection('skills')">My Skills</button>
-        <button class="btn btn-secondary" onclick="scrollToSection('contact')">Contact</button>
-      </div>
-    </div>
-  </header>
+    <!-- HERO -->
+    <header class="hero" aria-label="Sujan Adhikari hero">
+      <div class="hero-left">
+        <div class="eyebrow">Frontend · Analytics · Writing</div>
+        <h1>
+          I'm <span class="name">Sujan Adhikari</span>
+        </h1>
+        <p class="lead">
+          Frontend developer (React, Vite), analytics practitioner (Mixpanel, GA), and technical writer. I build performant, accessible interfaces and translate user behavior into product momentum.
+        </p>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2 class="section-title">What I Work With</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>UI / UX</h3>
-        <p>Figma, Design Systems, Wireframes, Prototyping</p>
-      </div>
-      <div class="card">
-        <h3>Frontend</h3>
-        <p>React, Vite, JavaScript, Performance-focused UI</p>
-      </div>
-      <div class="card">
-        <h3>Analytics</h3>
-        <p>Mixpanel, Google Analytics, Event Tracking</p>
-      </div>
-      <div class="card">
-        <h3>Marketing</h3>
-        <p>SEO, Campaign Tracking, WordPress</p>
-      </div>
-    </div>
-  </section>
+        <div class="metrics" aria-hidden="true">
+          <div class="pill">→ 5+ production UIs</div>
+          <div class="pill">→ Mixpanel + GA funnels</div>
+          <div class="pill">→ Speaker & writer</div>
+        </div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2 class="section-title">Featured Projects</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Survey Analytics Platform</h3>
-        <p><strong>Problem:</strong> Low survey completion & unclear drop-offs.</p>
-        <p><strong>Solution:</strong> UX redesign + Mixpanel funnel tracking.</p>
-        <p><strong>Impact:</strong> ↑ 28% completion, ↓ 40% drop-offs.</p>
-        <p><em>Tech:</em> React, MUI, Mixpanel</p>
-      </div>
-      <div class="card">
-        <h3>Interactive Survey System</h3>
-        <p><strong>Problem:</strong> Static forms reduced engagement.</p>
-        <p><strong>Solution:</strong> Chat-style survey with progress tracking.</p>
-        <p><strong>Impact:</strong> ↑ user engagement, ↑ response quality.</p>
-        <p><em>Tech:</em> React, Vite, Analytics</p>
-      </div>
-      <div class="card">
-        <h3>SEO & Marketing Dashboard</h3>
-        <p><strong>Problem:</strong> No clear view of campaign performance.</p>
-        <p><strong>Solution:</strong> Centralized dashboard with GA & SEO data.</p>
-        <p><strong>Impact:</strong> Improved content & campaign decisions.</p>
-        <p><em>Tech:</em> GA, SEO tools, WordPress</p>
-      </div>
-    </div>
-  </section>
+        <div class="cta-row" role="navigation" aria-label="Primary actions">
+          <a class="btn btn-primary" href="mailto:sujanaddy98@gmail.com">Contact: sujanaddy98@gmail.com</a>
+          <a class="btn btn-ghost" href="#projects">See Projects</a>
+          <a class="btn btn-ghost" href="https://medium.com/@sujanaddy98" target="_blank" rel="noopener">Read my Medium</a>
+        </div>
 
-  <!-- ACHIEVEMENTS -->
-  <section id="achievements">
-    <h2 class="section-title">Achievements</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>32%</h3>
-        <p>Increase in onboarding conversion using Mixpanel funnels</p>
+        <div style="margin-top:16px" class="small muted">
+          GitHub: <a href="https://github.com/Sujadk/" target="_blank" rel="noopener">github.com/Sujadk</a> — LinkedIn: <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">linkedin.com/in/sujan-adhikari</a>
+        </div>
       </div>
-      <div class="card">
-        <h3>45%</h3>
-        <p>Performance improvement after frontend optimization</p>
-      </div>
-      <div class="card">
-        <h3>5+</h3>
-        <p>Products supported with reusable UI systems</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="section-title">Let’s Connect</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Email</h3>
-        <p>youremail@example.com</p>
+      <div class="hero-right" aria-hidden="true">
+        <img class="avatar" src="https://github.com/Sujadk/sujadk.github.io/blob/main/profile.jpg" alt="Sujan Adhikari profile picture" />
       </div>
-      <div class="card">
-        <h3>GitHub</h3>
-        <p>github.com/yourusername</p>
-      </div>
-      <div class="card">
-        <h3>LinkedIn</h3>
-        <p>linkedin.com/in/yourprofile</p>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <footer>
-    © 2025 Your Name — Built with GitHub Pages
-  </footer>
+    <div class="divider" role="separator"></div>
+
+    <!-- ABOUT / SUMMARY -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">About</h2>
+      <p class="subtle">
+        I'm a frontend engineer focused on user-centric interfaces and actionable analytics. I combine modern React development (Vite, hooks, TanStack/react-query) with event-driven instrumentation to improve onboarding, retention and product growth. I write about engineering systems, documentation, and product-led growth.
+      </p>
+
+      <div class="grid responsive" style="margin-top:12px;">
+        <div class="card">
+          <h3>Core strengths</h3>
+          <div class="tags" aria-hidden="true">
+            <span class="tag">React</span>
+            <span class="tag">Vite</span>
+            <span class="tag">MUI</span>
+            <span class="tag">Mixpanel</span>
+            <span class="tag">Google Analytics</span>
+            <span class="tag">Figma</span>
+            <span class="tag">Performance</span>
+            <span class="tag">Accessibility</span>
+          </div>
+          <p class="small muted" style="margin-top:10px;">I ship UI systems, instrument product behavior, and document decisions for engineers and non-technical stakeholders.</p>
+        </div>
+
+        <div class="card">
+          <h3>Role I seek</h3>
+          <p>Senior/Lead Frontend role where I can own UI systems, product instrumentation, and content for developer experience.</p>
+          <p class="small muted">Open to hybrid/remote positions. I enjoy collaborating with PMs and analytics teams to measure impact.</p>
+        </div>
+
+        <div class="card">
+          <h3>Impact snapshots</h3>
+          <p><strong>32%</strong> increase in onboarding conversion (Mixpanel funnels)</p>
+          <p><strong>45%</strong> performance gains after frontend optimizations</p>
+          <p class="small muted">Metrics-based improvements, documented and shared with product & marketing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title" class="section-title">Skills & Tools</h2>
+      <div class="grid cols-4" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
+        <div class="card">
+          <h3>Frontend</h3>
+          <p>React, Vite, Type-less JavaScript, component-driven design, accessibility</p>
+        </div>
+        <div class="card">
+          <h3>Design</h3>
+          <p>Figma, design systems, prototyping, UX research</p>
+        </div>
+        <div class="card">
+          <h3>Analytics</h3>
+          <p>Mixpanel, Google Analytics, event taxonomy, funnel analysis</p>
+        </div>
+        <div class="card">
+          <h3>Marketing & SEO</h3>
+          <p>SEO strategy, campaign tracking, WordPress</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="section-title">Featured Projects</h2>
+
+      <div class="grid responsive">
+        <div class="card">
+          <h3>Workspace Management UI</h3>
+          <p class="small muted">Admin & workspace UX for collaboration and permissions.</p>
+          <div class="project-links">
+            <a href="https://github.com/Sujadk/Workspacemanagement-ui" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+          <p class="small muted" style="margin-top:8px;">Tech: React, MUI, analytics instrumentation</p>
+        </div>
+
+        <div class="card">
+          <h3>Guided Tour / Welcome Flow</h3>
+          <p class="small muted">New-user guided tour component & onboarding flows to improve activation.</p>
+          <div class="project-links">
+            <a href="https://github.com/Sujadk/guidedtour-welcome" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+          <p class="small muted" style="margin-top:8px;">Tech: React, stateful tours, accessibility</p>
+        </div>
+
+        <div class="card">
+          <h3>Online Book Review App</h3>
+          <p class="small muted">Interactive review platform with user profiles and rating UX.</p>
+          <div class="project-links">
+            <a href="https://github.com/Sujadk/online_book_review_application" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+          <p class="small muted" style="margin-top:8px;">Tech: React, client-server patterns</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLES: Medium + LinkedIn -->
+    <section id="writing" aria-labelledby="writing-title">
+      <h2 id="writing-title" class="section-title">Selected Writing</h2>
+      <p class="subtle">Articles on systems thinking, frontend engineering, and product analytics. External links open in a new tab.</p>
+
+      <div class="grid responsive" style="margin-top:12px;">
+        <!-- Medium -->
+        <div class="card articles">
+          <h3>Medium — Thought Leadership</h3>
+          <p class="small muted">Recent writing on GEO, growth, and developer mindset.</p>
+
+          <div style="margin-top:12px;">
+            <a href="https://medium.com/@sujanaddy98/why-geo-outperforms-traditional-seo-at-a-systems-level-1a5d23088ef7" target="_blank" rel="noopener" class="small">• Why GEO Outperforms Traditional SEO</a>
+            <div class="meta">medium.com · systems-level SEO & discovery</div>
+
+            <a href="https://medium.com/@sujanaddy98/from-metrics-to-momentum-how-to-turn-user-behavior-into-your-growth-engine-5c07774d4f48" target="_blank" rel="noopener" class="small" style="display:block;margin-top:8px;">• From Metrics to Momentum</a>
+            <div class="meta">medium.com · analytics to growth playbook</div>
+
+            <a href="https://medium.com/@sujanaddy98/react-approach-essential-mindset-tips-for-new-developers-c7a9fe559a25" target="_blank" rel="noopener" class="small" style="display:block;margin-top:8px;">• The React Approach — Mindset for new devs</a>
+            <div class="meta">medium.com · architecture & practices</div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <a class="btn btn-ghost" href="https://medium.com/@sujanaddy98" target="_blank" rel="noopener">Open Medium Profile</a>
+          </div>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="card articles">
+          <h3>Popular LinkedIn pieces</h3>
+          <p class="small muted">Technical writing and systems thinking shared with engineering community.</p>
+
+          <div style="margin-top:12px;">
+            <a href="https://www.linkedin.com/pulse/beyond-pixels-systems-behind-frontend-engineering-sujan-adhikari-irggf/?trackingId=acl1cDqcQXm1Ii37VfYtdQ%3D%3D" target="_blank" rel="noopener" class="small">• Beyond Pixels — Systems behind Frontend Engineering</a>
+            <div class="meta">linkedin.com · engineering systems</div>
+
+            <a href="https://www.linkedin.com/pulse/future-technical-writing-how-ai-redefining-developers-sujan-adhikari-bvxdf/?trackingId=acl1cDqcQXm1Ii37VfYtdQ%3D%3D" target="_blank" rel="noopener" class="small" style="display:block;margin-top:8px;">• Future of Technical Writing — How AI is redefining devs</a>
+            <div class="meta">linkedin.com · docs & AI</div>
+
+            <a href="https://www.linkedin.com/pulse/ultimate-react-folder-structure-2025-sujan-adhikari-zxvzf/?trackingId=usUnR4V4LUGytXJv38xYwA%3D%3D" target="_blank" rel="noopener" class="small" style="display:block;margin-top:8px;">• Ultimate React Folder Structure — 2025</a>
+            <div class="meta">linkedin.com · architecture</div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <a class="btn btn-ghost" href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">Open LinkedIn Profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" aria-labelledby="certs-title">
+      <h2 id="certs-title" class="section-title">Certifications & Courses</h2>
+      <p class="subtle">Verified certificates from Coursera, IBM, 365 Data Science and LinkedIn Learning.</p>
+
+      <div class="cert-grid" style="margin-top:12px;">
+        <a class="card cert" href="https://coursera.org/share/203ff724b2610059a67e91ebd4654004" target="_blank" rel="noopener">
+          <h3>Analyze Website Visitors — Google Analytics Segments</h3>
+          <p class="small muted">Coursera certificate</p>
+        </a>
+
+        <a class="card cert" href="https://learn.365datascience.com/certificates/CC-447C28BB2F/" target="_blank" rel="noopener">
+          <h3>Data Analysis with ChatGPT</h3>
+          <p class="small muted">365 Data Science</p>
+        </a>
+
+        <a class="card cert" href="https://www.coursera.org/account/accomplishments/specialization/Q6CYPE7DHZLZ" target="_blank" rel="noopener">
+          <h3>Meta Front-End Developer (Specialization)</h3>
+          <p class="small muted">Coursera</p>
+        </a>
+
+        <a class="card cert" href="https://www.coursera.org/account/accomplishments/verify/6AQVZMD53DT3" target="_blank" rel="noopener">
+          <h3>Prompt Engineering for Web Developers</h3>
+          <p class="small muted">Coursera</p>
+        </a>
+
+        <a class="card cert" href="https://www.coursera.org/account/accomplishments/certificate/N43QDSHDVYLE" target="_blank" rel="noopener">
+          <h3>Foundations of UX Design</h3>
+          <p class="small muted">Coursera</p>
+        </a>
+
+        <a class="card cert" href="https://www.coursera.org/account/accomplishments/specialization/82KEAVYT8VNS" target="_blank" rel="noopener">
+          <h3>IBM Full-Stack JavaScript Developer</h3>
+          <p class="small muted">Coursera</p>
+        </a>
+
+        <!-- LinkedIn Learning extras -->
+        <a class="card cert" href="https://github.com/Sujadk/sujadk.github.io/blob/main/CertificateOfCompletion_Advertising%20on%20Pinterest.pdf" target="_blank" rel="noopener">
+          <h3>Advertising on Pinterest — Certificate</h3>
+          <p class="small muted">LinkedIn Learning (PDF)</p>
+        </a>
+
+        <a class="card cert" href="https://github.com/Sujadk/sujadk.github.io/blob/main/CertificateOfCompletion_Google%20Ads%20(AdWords)%20Essential%20Training.pdf" target="_blank" rel="noopener">
+          <h3>Google Ads — Essential Training</h3>
+          <p class="small muted">LinkedIn Learning (PDF)</p>
+        </a>
+
+        <a class="card cert" href="https://github.com/Sujadk/sujadk.github.io/blob/main/CertificateOfCompletion_JavaScript%20Essential%20Training.pdf" target="_blank" rel="noopener">
+          <h3>JavaScript — Essential Training</h3>
+          <p class="small muted">LinkedIn Learning (PDF)</p>
+        </a>
+
+        <a class="card cert" href="https://github.com/Sujadk/sujadk.github.io/blob/main/CertificateOfCompletion_Web%20Development%20Foundations_%20Web%20Technologies.pdf" target="_blank" rel="noopener">
+          <h3>Web Development Foundations</h3>
+          <p class="small muted">LinkedIn Learning (PDF)</p>
+        </a>
+
+        <a class="card cert" href="https://github.com/Sujadk/sujadk.github.io/blob/main/CertificateOfCompletion_WordPress%205%20Essential%20Training%20(1).pdf" target="_blank" rel="noopener">
+          <h3>WordPress 5 — Essential Training</h3>
+          <p class="small muted">LinkedIn Learning (PDF)</p>
+        </a>
+
+        <a class="card cert" href="https://github.com/Sujadk/sujadk.github.io/blob/main/CertificateOfCompletion_The%20Six%20Morning%20Habits%20of%20High%20Performers.pdf" target="_blank" rel="noopener">
+          <h3>Six Morning Habits — Productivity</h3>
+          <p class="small muted">LinkedIn Learning (PDF)</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- EVENTS & SPEAKING -->
+    <section id="events" aria-labelledby="events-title">
+      <h2 id="events-title" class="section-title">Events & Speaking</h2>
+      <p class="subtle">Community events, speaker sessions and meetups I participated in.</p>
+
+      <div style="margin-top:12px;" class="grid responsive">
+        <div class="card">
+          <h3>GDG Kathmandu — Google I/O Extended</h3>
+          <p class="small muted">Attended at St. Xavier's College — community knowledge sharing and product talks.</p>
+          <div class="events-grid" style="margin-top:10px;">
+            <a href="https://media.licdn.com/dms/image/v2/D4D22AQHDT8UkNI5kjw/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1722146561529?e=1769040000&v=beta&t=DXZ2jDQihEY8dNrnb-sBVe_rCZy9vi3f30PxkGAul7Q" target="_blank" rel="noopener">
+              <img class="event-img" src="https://media.licdn.com/dms/image/v2/D4D22AQHDT8UkNI5kjw/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1722146561529?e=1769040000&v=beta&t=DXZ2jDQihEY8dNrnb-sBVe_rCZy9vi3f30PxkGAul7Q" alt="GDG Kathmandu event image" />
+            </a>
+            <a href="https://media.licdn.com/dms/image/v2/D4D22AQGtit6-e2pl2Q/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1722146562063?e=1769040000&v=beta&t=qDzLCwkv--4g945pkBZiyjUAiDswQ5VSks_kzoLOyHY" target="_blank" rel="noopener">
+              <img class="event-img" src="https://media.licdn.com/dms/image/v2/D4D22AQGtit6-e2pl2Q/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1722146562063?e=1769040000&v=beta&t=qDzLCwkv--4g945pkBZiyjUAiDswQ5VSks_kzoLOyHY" alt="GDG Kathmandu event image 2" />
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Speaker — Nepal Commerce Campus</h3>
+          <p class="small muted">Talk: "AI prompting for IT project documentation" — helped students & developers adopt prompt engineering for docs.</p>
+          <div class="events-grid" style="margin-top:10px;">
+            <a href="https://media.licdn.com/dms/image/v2/D4D10AQFrQwbvPVEdGw/image-shrink_1280/B4DZgDAcqwHwAU-/0/1752397106526?e=1768136400&v=beta&t=YlmPHyya2A-pJWdM3cX3uqm8BlBixvJxLzTlpOWdPzc" target="_blank" rel="noopener">
+              <img class="event-img" src="https://media.licdn.com/dms/image/v2/D4D10AQFrQwbvPVEdGw/image-shrink_1280/B4DZgDAcqwHwAU-/0/1752397106526?e=1768136400&v=beta&t=YlmPHyya2A-pJWdM3cX3uqm8BlBixvJxLzTlpOWdPzc" alt="Speaker event image 1" />
+            </a>
+            <a href="https://media.licdn.com/dms/image/v2/D4D10AQE7PFPb-PGKKA/image-shrink_1280/B4DZgDAcq_HkAM-/0/1752397107299?e=1768136400&v=beta&t=HR8-fS1net4rN1HX0wajfebEbnydfgzgmu63oPs1iHg" target="_blank" rel="noopener">
+              <img class="event-img" src="https://media.licdn.com/dms/image/v2/D4D10AQE7PFPb-PGKKA/image-shrink_1280/B4DZgDAcq_HkAM-/0/1752397107299?e=1768136400&v=beta&t=HR8-fS1net4rN1HX0wajfebEbnydfgzgmu63oPs1iHg" alt="Speaker event image 2" />
+            </a>
+            <a href="https://media.licdn.com/dms/image/v2/D4D10AQGQoMUqizEfNg/image-shrink_1280/B4DZgDAcq5GkAQ-/0/1752397107214?e=1768136400&v=beta&t=HHiMhsBuquWyMmJVEqD0CdsyrZJZkSaKVw7FynEbnyM" target="_blank" rel="noopener">
+              <img class="event-img" src="https://media.licdn.com/dms/image/v2/D4D10AQGQoMUqizEfNg/image-shrink_1280/B4DZgDAcq5GkAQ-/0/1752397107214?e=1768136400&v=beta&t=HHiMhsBuquWyMmJVEqD0CdsyrZJZkSaKVw7FynEbnyM" alt="Speaker event image 3" />
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Seminar — WordPress Marketer</h3>
+          <p class="small muted">Attended: Thriving as a WordPress Marketer — practical tips for content & conversions.</p>
+          <div class="events-grid" style="margin-top:10px;">
+            <a href="https://media.licdn.com/dms/image/v2/C5622AQEgIKQWqL7yig/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1679222713139?e=1769040000&v=beta&t=IkEs4r9YJ-GTutjjNMuGA7YoEo1wPisibYwLhDxO_-Y" target="_blank" rel="noopener">
+              <img class="event-img" src="https://media.licdn.com/dms/image/v2/C5622AQEgIKQWqL7yig/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1679222713139?e=1769040000&v=beta&t=IkEs4r9YJ-GTutjjNMuGA7YoEo1wPisibYwLhDxO_-Y" alt="Seminar image 1" />
+            </a>
+            <a href="https://media.licdn.com/dms/image/v2/C5622AQGbc11ipeLySQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1679222712996?e=1769040000&v=beta&t=_zdlXPFcRut9zjsj85X-QdKfWzSPcaWnDZYsiYRXNV4" target="_blank" rel="noopener">
+              <img class="event-img" src="https://media.licdn.com/dms/image/v2/C5622AQGbc11ipeLySQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1679222712996?e=1769040000&v=beta&t=_zdlXPFcRut9zjsj85X-QdKfWzSPcaWnDZYsiYRXNV4" alt="Seminar image 2" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section-title">Connect</h2>
+      <p class="subtle">Reach out for roles, collaboration, speaking or consulting.</p>
+
+      <div class="contact-cards" style="margin-top:12px;">
+        <div class="contact-card">
+          <strong>Email</strong>
+          <a href="mailto:sujanaddy98@gmail.com">sujanaddy98@gmail.com</a>
+          <p class="small muted">Fast replies via email — include role & a one-line summary of your need.</p>
+        </div>
+
+        <div class="contact-card">
+          <strong>GitHub</strong>
+          <a href="https://github.com/Sujadk/" target="_blank" rel="noopener">github.com/Sujadk</a>
+          <p class="small muted">Open-source projects, demos and site repo.</p>
+        </div>
+
+        <div class="contact-card">
+          <strong>LinkedIn</strong>
+          <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">linkedin.com/in/sujan-adhikari</a>
+          <p class="small muted">Articles, community posts, and professional updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Sujan Adhikari — Frontend & Analytics • Built with HTML & ♥ • <a href="https://github.com/Sujadk/" target="_blank" rel="noopener">GitHub</a>
+    </footer>
+  </div>
 
   <script>
-    // Smooth scroll
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Reveal cards on scroll
+    // Smooth scroll for anchor links (any anchor to #id)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        if (!id) return;
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Simple reveal for cards
     const cards = document.querySelectorAll('.card');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.opacity = '1';
+          entry.target.style.transition = 'transform .6s cubic-bezier(.2,.9,.3,1),opacity .6s ease';
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
 
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    cards.forEach(card => observer.observe(card));
+    cards.forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(14px)';
+      obs.observe(c);
+    });
   </script>
 </body>
 </html>
+
